@@ -22,4 +22,5 @@ walkthrough.md
 #Your config and cv go into the folder for high customization
 
 your_cv_config/*
-your_cv_config/.gitkeep
+!your_cv_config/.gitkeep
+!your_cv_config/file_config.txt

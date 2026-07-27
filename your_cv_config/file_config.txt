@@ -1,0 +1,63 @@
+# ==========================================
+# LinkedIn Job Alerts - Filters & Scoring
+# ==========================================
+# THIS IS AN EXAMPLE FILE
+# COPY IT INTO YOUR PERSONAL DATA FOLDER AS file_config.env
+# REPLACE ALL VALUES WITH YOUR OWN
+# DO NOT COMMIT THE .env FILE
+# ==========================================
+
+# --- Apify Settings ---
+APIFY_MAX_ITEMS=20
+APIFY_SCRAPE_COMPANY=true
+
+# --- LinkedIn Search URLs (comma-separated) ---
+JOB_QUERIES=https://www.linkedin.com/jobs/search/?keywords=Software%20Developer&location=Germany&f_WT=2&f_TPR=r7200
+
+# --- Filter: title ---
+FILTER_TITLE_INCLUDE=Software Developer,Backend Engineer
+FILTER_TITLE_EXCLUDE=Principal,VP,Head of
+
+# --- Filter: location ---
+FILTER_LOCATION_INCLUDE=Remote,Berlin
+FILTER_LOCATION_EXCLUDE=
+
+# --- Filter: seniorityLevel ---
+FILTER_SENIORITY_INCLUDE=Associate,Entry level,Mid-Senior level
+FILTER_SENIORITY_EXCLUDE=
+
+# --- Filter: employmentType ---
+FILTER_EMPLOYMENT_TYPE_INCLUDE=Full-time
+FILTER_EMPLOYMENT_TYPE_EXCLUDE=Internship
+
+# --- Filter: salaryInfo ---
+FILTER_SALARY_MIN=
+FILTER_SALARY_CURRENCY=EUR
+
+# --- Filter: companyName ---
+FILTER_COMPANY_EXCLUDE_NAMES=
+
+# --- Filter: companyEmployeesCount ---
+FILTER_COMPANY_MIN_EMPLOYEES=
+FILTER_COMPANY_MAX_EMPLOYEES=
+
+# --- Filter: experience (parsed from descriptionText) ---
+FILTER_MAX_YEARS_REQUIRED=3
+
+# --- Filter: applicantsCount ---
+FILTER_MAX_APPLICANTS=
+
+# --- Filter: postedAt ---
+FILTER_POSTED_WITHIN_HOURS=3
+
+# --- Scoring (from descriptionText matching) ---
+SCORING_KEYWORDS=Java,Kubernetes,Docker
+SCORING_KEYWORD_BOOST=10
+SCORING_FRESH_GRAD_BOOST=5
+SCORING_TOP_RESULTS=5
+
+# --- Resume ---
+RESUME_PATH=resume.pdf
+
+# --- Email Format ---
+EMAIL_SUBJECT_PREFIX=[Job Alert]
