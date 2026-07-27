@@ -18,3 +18,8 @@ daily_job_report.html
 job_history.json
 scheduling.md
 walkthrough.md
+
+#Your config and cv go into the folder for high customization
+
+your_cv_config/*
+your_cv_config/.gitkeep
