@@ -3,7 +3,7 @@ import json
 from dotenv import load_dotenv
 
 # --- Load personal config ---
-load_dotenv("personal_data/file_config.env")
+load_dotenv("your_cv_config/file_config.env")
 
 
 def _list(key):
