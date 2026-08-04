@@ -28,4 +28,8 @@ def job_scraper():
         return None
 
     jobs["work_mode"] = jobs["description"].apply(find_keyword)
-    return jobs
+    if os.getenv("work_from_home") == "True":
+        df_filtered = jobs[jobs["work_mode"].notna()]
+    else:
+        df_filtered = jobs
+    return df_filtered
