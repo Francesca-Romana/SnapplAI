@@ -34,12 +34,12 @@ def agentic_analyze(jobs):
             f"use only english"
             f"you goal is to analyze the row of the job summireze the description and match with the {cv} of the candidate and return the score of fitting and the summireze description and the link for apply"
             f"return the result in json format with the following keys: 'score from 1 to 10','name of campany', 'summary of the description max 50 characters', 'is_remote (take from the job description)', 'apply_link the url'"
-            f"return only the json object without any other text or explanation only json object(result should format like this: {{'score': 8, 'name of campany': 'company name', 'summary':, 'is_remote':, 'apply_link':'}})'"
+            f"return only the json object without any other text or explanation only json object(result should format like this: {{'score': 8, 'name of campany':,'role':, 'company name', 'summary':, 'is_remote':, 'apply_link':'}})'"
         )
     response_list = []
 
     for index, row in jobs.iterrows():
-        messages = [{"role": "system", "content": system_prompt}] + [{"role": "user", "content": f"company name: {row['company']},job description: {row['summary']}, job url: {row['job_url']}"}]
+        messages = [{"role": "system", "content": system_prompt}] + [{"role": "user", "content": f"company name: {row['company']},role: {row['title']}: {row['company']},job description: {row['summary']}, job url: {row['job_url']}"}]
         response = groq_client.chat.completions.create(model="llama-3.1-8b-instant", messages=messages,temperature=0,)
         response_list.append(response)
     
