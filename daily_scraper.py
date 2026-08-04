@@ -11,7 +11,6 @@ def job_scraper():
         location= os.getenv("location"),
         results_wanted= int(os.getenv("results_wanted")),
         hours_old= int(os.getenv("hours_old")),
-        country_indeed= os.getenv("country_indeed"),
         linkedin_fetch_description= os.getenv("linkedin_fetch_description") == "True", # gets more info such as description, direct job url (slower)
         proxies= os.getenv("proxies").split(",") if os.getenv("proxies") else None,
     )
