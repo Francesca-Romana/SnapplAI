@@ -15,6 +15,7 @@ venv/
 
 # Project Specific
 job_matching_results.xlsx
+note_release.txt
 #Your config and cv go into the folder for high customization
 
 your_cv_config/*
