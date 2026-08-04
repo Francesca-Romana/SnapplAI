@@ -10,4 +10,4 @@ linkedin_fetch_description= True # this should be always true for identify keywo
 proxies= ["208.195.175.46:65095", "208.195.175.45:65095", "localhost"]
 work_from_home= True
 keyword_filter_remote_job = remote,hybrid #insert list of keywrod for find remote in text description
-dir_cv= \your_cv_config\Valerio_Mezzopra_CV.pdf
+dir_cv= \your_cv_config\Valerio_Mezzopra_CV.pdf #modifify after config\
