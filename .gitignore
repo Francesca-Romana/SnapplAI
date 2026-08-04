@@ -8,6 +8,7 @@ __pycache__/
 .venv/
 env/
 venv/
+.ipynb
 
 # macOS
 .DS_Store
