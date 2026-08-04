@@ -6,6 +6,5 @@ google_search_term="Data Analyst site:linkedin.com/jobs"
 location="remote"
 results_wanted=20
 hours_old=2
-country_indeed='Italy'
 linkedin_fetch_description=True # gets more info such as description, direct job url (slower)
 proxies=["208.195.175.46:65095", "208.195.175.45:65095", "localhost"]
