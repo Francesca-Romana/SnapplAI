@@ -31,11 +31,13 @@ def agentic_analyze(jobs):
         if text:
             cv += text
     system_prompt = (
-            f"use only english"
-            f"you goal is to analyze the row of the job summireze the description and match with the {cv} of the candidate and return the score of fitting and the summireze description and the link for apply"
-            f"return the result in json format with the following keys: 'score from 1 to 10','name of campany', 'summary of the description max 50 characters', 'is_remote (take from the job description)', 'apply_link the url'"
-            f"return only the json object without any other text or explanation only json object(result should format like this: {{'score': 8, 'name of campany':,'role':, 'company name', 'summary':, 'is_remote':, 'apply_link':should always be start with https://www.linkedin}})'"
-        )
+        f"Match this job against the candidate CV: {cv}. "
+        "Score fit from 1-10 based on skills and experience. "
+        "Extract remote/hybrid status from the description. "
+        "apply_link must be the original LinkedIn URL (https://www.linkedin.com/jobs/view/...), never modify it. "
+        "Respond ONLY with valid JSON, no other text: "
+        '{"score": 8, "company": "", "role": "", "summary": "max 75 chars", "is_remote": , "apply_link": "https://www.linkedin.com/jobs/view/..."}'
+    )
     response_list = []
 
     for index, row in jobs.iterrows():
