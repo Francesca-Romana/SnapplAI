@@ -1,6 +1,6 @@
 EXAMPLE ENV CONFIG
 
-site_name=["linkedin"] # "glassdoor", "bayt", "naukri", "bdjobs", "indeed", "linkedin", "zip_recruiter", "google"
+site_name="linkedin"
 search_term="Data Analyst"
 google_search_term="Data Analyst site:linkedin.com/jobs"
 location="remote"
