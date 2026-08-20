@@ -2,12 +2,28 @@ EXAMPLE ENV CONFIG
 
 site_name= "linkedin"
 search_term= "Data Analyst"
-google_search_term= "Data Analyst site:linkedin.com/jobs"
-location=" UK" 
-results_wanted= 20
-hours_old= 2
+location= "UK" check the list
 linkedin_fetch_description= True # this should be always true for identify keywork for remote/smart working
 proxies= ["208.195.175.46:65095", "208.195.175.45:65095", "localhost"]
 work_from_home= True
 keyword_filter_remote_job = remote,hybrid #insert list of keywrod for find remote in text description
 dir_cv= \your_cv_config\Valerio_Mezzopra_CV.pdf #modifify after config\
+LIST LOCATION:
+
+
+Argentina 	Australia* 	Austria* 	Bahrain
+Belgium* 	Brazil* 	Canada* 	Chile
+China 	Colombia 	Costa Rica 	Czech Republic
+Denmark 	Ecuador 	Egypt 	Finland
+France* 	Germany* 	Greece 	Hong Kong*
+Hungary 	India* 	Indonesia 	Ireland*
+Israel 	Italy* 	Japan 	Kuwait
+Luxembourg 	Malaysia 	Mexico* 	Morocco
+Netherlands* 	New Zealand* 	Nigeria 	Norway
+Oman 	Pakistan 	Panama 	Peru
+Philippines 	Poland 	Portugal 	Qatar
+Romania 	Saudi Arabia 	Singapore* 	South Africa
+South Korea 	Spain* 	Sweden 	Switzerland*
+Taiwan 	Thailand 	Turkey 	Ukraine
+United Arab Emirates 	UK* 	USA* 	Uruguay
+Venezuela 	Vietnam*
