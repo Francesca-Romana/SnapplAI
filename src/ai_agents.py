@@ -54,7 +54,14 @@ def agentic_summarize(jobs):
     df_expanded = pd.json_normalize(jobs["summary_parsed"])
 
     jobs = pd.concat([jobs, df_expanded], axis=1)
-    
+
+    load_dotenv("your_cv_config/file_config.env")
+
+    if os.getenv("work_from_home") == "True":
+        jobs = jobs[jobs["modality"].isin(["remote","hybrid"])]
+    else:
+        jobs
+        
     return jobs
 
 
