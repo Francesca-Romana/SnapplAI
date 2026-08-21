@@ -6,8 +6,29 @@ from dotenv import load_dotenv
 import os
 import json
 
+
+
+
+
+
 def agentic_summarize(jobs):
     load_dotenv("your_cv_config/file_config.env")
+
+
+    system_prompt= """ 
+    Extract structured data from a job posting. Return ONLY valid JSON, no markdown, no text.
+
+    {
+    "title": "exact job title",
+    "seniority": "intern|junior|mid|senior|lead|manager|director",
+    "modality": "remote|hybrid|on-site",
+    "experience_years_min": number or null,
+    "required_skills": ["explicitly required tools/languages/platforms"],
+    "nice_to_have_skills": ["preferred/bonus skills"],
+    "required_education": "degree/certification or null",
+    "languages": ["required spoken languages with level"]
+
+    If not in the posting, use null. Do not invent. Keep original language for title and responsibilities. Ignore benefits, perks, company values."""
     
     groq_client = Groq(os.getenv("LLM_KEY"))
     
@@ -19,6 +40,12 @@ def agentic_summarize(jobs):
         jobs.at[index, "summary"] = result
     
     return jobs
+
+
+
+
+
+
 
 def agentic_analyze(jobs):
     load_dotenv("your_cv_config/file_config.env")
