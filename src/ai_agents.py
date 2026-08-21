@@ -48,6 +48,12 @@ def agentic_summarize(jobs):
         )
         jobs.at[index, "summary"] = response.text
         time.sleep(5)
+
+    jobs["summary_parsed"] = jobs["summary"].apply(json.loads)
+
+    df_expanded = pd.json_normalize(jobs["summary_parsed"])
+
+    jobs = pd.concat([jobs, df_expanded], axis=1)
     
     return jobs
 
