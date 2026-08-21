@@ -1,10 +1,12 @@
 import pandas as pd
-from groq import Groq
 from schedule import jobs
 from pypdf import PdfReader
 from dotenv import load_dotenv
 import os
 import json
+from google import genai
+from google.genai import types
+import time
 
 
 
@@ -30,14 +32,22 @@ def agentic_summarize(jobs):
 
     If not in the posting, use null. Do not invent. Keep original language for title and responsibilities. Ignore benefits, perks, company values."""
     
-    groq_client = Groq(os.getenv("LLM_KEY"))
-    
+    load_dotenv(".env")
+
+    client = genai.Client(api_key=os.getenv("LLM_GEMINI"))
+
     for index, row in jobs.iterrows():
-        system_prompt = "summarize the job description max 100 words,return only the summary without any other text or explanation, important include if is remote or hydrid work, and the link for apply"
-        messages = [{"role": "system", "content": system_prompt}] + [{"role": "user", "content": f"job description: {row['description']}"}]
-        response = groq_client.chat.completions.create(model="llama-3.1-8b-instant", messages=messages, temperature=0)
-        result = response.choices[0].message.content
-        jobs.at[index, "summary"] = result
+        response = client.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=f"{row['description']}",
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                temperature=0,
+                response_mime_type="application/json",  # forza output JSON
+            )
+        )
+        jobs.at[index, "summary"] = response.text
+        time.sleep(5)
     
     return jobs
 
