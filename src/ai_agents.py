@@ -13,7 +13,7 @@ import time
 client = genai.Client(api_key=os.getenv("LLM_GEMINI"))
 
 
-def agentic_summarize(jobs):
+def agentic_summarize(jobs): # summirize the description and create an output of dettail of the job descriprion
     load_dotenv("your_cv_config/file_config.env")
 
 
@@ -21,7 +21,7 @@ def agentic_summarize(jobs):
     Extract structured data from a job posting. Return ONLY valid JSON, no markdown, no text.
 
     {
-    "title": "exact job title",
+    "title": "exact job title", 
     "seniority": "intern|junior|mid|senior|lead|manager|director",
     "modality": "remote|hybrid|on-site",
     "experience_years_min": number or null,
@@ -65,7 +65,7 @@ def agentic_summarize(jobs):
 
 
 
-def agentic_analyze(jobs):
+def agentic_analyze(jobs): # agentic ai that compare your cv with the output of summarize for define an analisys for give a score
     load_dotenv("your_cv_config/file_config.env")
     reader = PdfReader(os.getenv("dir_cv"))
     cv = ""
