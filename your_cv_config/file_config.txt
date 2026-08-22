@@ -14,8 +14,6 @@ linkedin_fetch_description= True # this should be always true for identify keywo
 
 work_from_home= True # leave empty if you are interest also on site work
 
-keyword_filter_remote_job = remote,hybrid #insert list of keywrod for find remote in text description
-
 dir_cv= \your_cv_config\Valerio_Mezzopra_CV.pdf #modifify after config\
 
 
