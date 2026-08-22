@@ -119,8 +119,12 @@ def agentic_analyze(jobs):
         response_list.append(response.text)
         time.sleep(5)
 
+    parsed = [json.loads(x) for x in response_list]
+
+    jobs_score = pd.json_normalize(parsed)
+
     
-    return json_jobs
+    return jobs_score
 
 
 
