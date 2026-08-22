@@ -72,8 +72,6 @@ def agentic_summarize(jobs):
 
 def agentic_analyze(jobs):
     load_dotenv("your_cv_config/file_config.env")
-    
-    groq_client = Groq(os.getenv("LLM_KEY"))
     reader = PdfReader(os.getenv("dir_cv"))
     cv = ""
     for page in reader.pages:
