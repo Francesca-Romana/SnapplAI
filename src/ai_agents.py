@@ -34,7 +34,6 @@ def agentic_summarize(jobs):
     
     load_dotenv(".env")
 
-    client = genai.Client(api_key=os.getenv("LLM_GEMINI"))
 
     for index, row in jobs.iterrows():
         response = client.models.generate_content(
@@ -105,6 +104,20 @@ def agentic_analyze(jobs):
 
                 Respond ONLY with valid JSON, no markdown, no extra text:
                 {{"analysis": "...", "score": N, "company": "...", "role": "...", "work_mode": "...", "apply_link": "..."}}"""
+    response_list= []
+    for index, row in jobs.iterrows():
+        response = client.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=f"""{row["title"]},{row["company"]}, {row["seniority"]}, {row["modality"]}, {row["experience_years_min"]}, 
+                        {row["required_skills"]}, {row["nice_to_have_skills"]}, {row["required_education"]}, {row["languages"]},{row["job_url"]}""",
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                temperature=0,
+                response_mime_type="application/json",  # forza output JSON
+            )
+        )
+        response_list.append(response.text)
+        time.sleep(5)
 
     
     return json_jobs
