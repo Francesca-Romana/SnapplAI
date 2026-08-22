@@ -16,6 +16,8 @@ work_from_home= True # leave empty if you are interest also on site work
 
 dir_cv= \your_cv_config\Valerio_Mezzopra_CV.pdf #modifify after config\
 
+score_config= 7 #this is the filter for the ai score, so the data ll filter for your number and up suggest 7 for 7-8-9-10 fit cv/JD
+
 
 LIST LOCATION:
 
