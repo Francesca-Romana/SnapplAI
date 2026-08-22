@@ -66,10 +66,6 @@ def agentic_summarize(jobs):
 
 
 
-
-
-
-
 def agentic_analyze(jobs):
     load_dotenv("your_cv_config/file_config.env")
     reader = PdfReader(os.getenv("dir_cv"))
@@ -78,32 +74,38 @@ def agentic_analyze(jobs):
         text = page.extract_text()
         if text:
             cv += text
-    system_prompt = (
-        f"Match this job against the candidate CV: {cv}. "
-        "Score fit from 1-10 based on skills and experience. "
-        "Extract remote/hybrid status from the description. "
-        "apply_link must be the original LinkedIn URL (https://www.linkedin.com/jobs/view/...), never modify it. "
-        "Respond ONLY with valid JSON, no other text: "
-        '{"score": 8, "company": "", "role": "", "summary": "max 75 chars", "is_remote": , "apply_link": "https://www.linkedin.com/jobs/view/..."}'
-    )
-    response_list = []
-
-    for index, row in jobs.iterrows():
-        messages = [{"role": "system", "content": system_prompt}] + [{"role": "user", "content": f"company name: {row['company']},role: {row['title']}: {row['company']},job description: {row['summary']}, job url: {row['job_url']}"}]
-        response = groq_client.chat.completions.create(model="llama-3.1-8b-instant", messages=messages,temperature=0,)
-        response_list.append(response)
+    system_prompt = f"""
     
-    
-    json_jobs= []
+    You are a job-fit evaluator. You will receive a candidate CV and a job description summary. Your task is to assess how well the candidate fits the role.
 
-    for x in response_list:
-        try:
-            result = x.choices[0].message.content
-            result = result.replace("```json", "").replace("```", "")
-            result_json = json.loads(result)
-            json_jobs.append(result_json)
-        except Exception as e:
-            continue
+                ## Candidate CV
+                {cv}
+
+                ## Evaluation criteria (use ALL of these in your analysis)
+                1. **Skills overlap** — how many required/preferred skills does the CV cover?
+                2. **Seniority alignment** — does the candidate's experience level match what the role asks for?
+                3. **Domain relevance** — is the candidate's industry/domain experience relevant?
+                4. **Title alignment** — how close is the candidate's current/past titles to this role?
+                5. **Location/remote fit** — can the candidate realistically work this role?
+
+                ## Scoring rubric
+                - 1-3: Poor fit — major gaps in required skills or seniority mismatch
+                - 4-5: Partial fit — some relevant skills but significant gaps remain
+                - 6-7: Good fit — most key skills covered, minor gaps only
+                - 8-9: Strong fit — skills, seniority, and domain all align well
+                - 10: Near-perfect fit — candidate matches almost every requirement
+
+                ## Output rules
+                - "analysis": write your reasoning FIRST, covering each evaluation criterion. 2-4 sentences.
+                - "score": integer 1-10, based on your analysis above
+                - "company": extract from the job description
+                - "role": exact job title from the description
+                - "work_mode": one of "remote", "hybrid", "onsite", "unknown" — extract from description
+                - "apply_link": the original LinkedIn URL (https://www.linkedin.com/jobs/view/...), copy it exactly, never modify it
+
+                Respond ONLY with valid JSON, no markdown, no extra text:
+                {{"analysis": "...", "score": N, "company": "...", "role": "...", "work_mode": "...", "apply_link": "..."}}"""
+
     
     return json_jobs
 
