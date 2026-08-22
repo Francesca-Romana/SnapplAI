@@ -60,6 +60,11 @@ def agentic_summarize(jobs): # summirize the description and create an output of
         jobs = jobs[jobs["modality"].isin(["remote","hybrid"])]
     else:
         jobs
+
+    if os.getenv("remote_only") == "True":
+        jobs = jobs[jobs["modality"].isin(["remote"])]
+    else:
+        jobs
         
     return jobs
 
