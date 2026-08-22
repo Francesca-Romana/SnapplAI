@@ -10,7 +10,7 @@ import time
 
 
 
-
+client = genai.Client(api_key=os.getenv("LLM_GEMINI"))
 
 
 def agentic_summarize(jobs):
