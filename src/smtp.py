@@ -2,6 +2,8 @@ import smtplib
 from email.message import EmailMessage
 import os
 from datetime import date,datetime
+from dotenv import load_dotenv
+
 
 hour= datetime.now().strftime("%H") 
 
