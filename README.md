@@ -103,6 +103,7 @@ GMAIL_APP_PASSWORD=your_app_password
 ### Search Settings
  
 Configure your job search parameters (role, location, filters) in the scraper config. The pipeline uses python-jobspy under the hood — check their docs for all available filters.
+Use file_config.txt for create your file_config.env
  
 ---
  
