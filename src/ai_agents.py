@@ -9,12 +9,13 @@ from google.genai import types
 import time
 
 
-
+load_dotenv(".env")
+load_dotenv("your_cv_config/file_config.env")
 client = genai.Client(api_key=os.getenv("LLM_GEMINI"))
 
 
 def agentic_summarize(jobs): # summirize the description and create an output of dettail of the job descriprion
-    load_dotenv("your_cv_config/file_config.env")
+    
 
 
     system_prompt= """ 
@@ -54,7 +55,6 @@ def agentic_summarize(jobs): # summirize the description and create an output of
 
     jobs = pd.concat([jobs, df_expanded], axis=1)
 
-    load_dotenv("your_cv_config/file_config.env")
 
     if os.getenv("work_from_home") == "True":
         jobs = jobs[jobs["modality"].isin(["remote","hybrid"])]
@@ -71,7 +71,6 @@ def agentic_summarize(jobs): # summirize the description and create an output of
 
 
 def agentic_analyze(jobs): # agentic ai that compare your cv with the output of summarize for define an analisys for give a score
-    load_dotenv("your_cv_config/file_config.env")
     reader = PdfReader(os.getenv("dir_cv"))
     cv = ""
     for page in reader.pages:
