@@ -1,9 +1,11 @@
 from jobspy import scrape_jobs
-import os
 from dotenv import load_dotenv
+import os
 import pandas as pd
-from groq import Groq
+from google import genai
+from google.genai import types
 import json
+
 
 import sys
 sys.path.append("..")
