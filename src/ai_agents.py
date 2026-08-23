@@ -108,7 +108,7 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
                 - "apply_link": the original LinkedIn URL (https://www.linkedin.com/jobs/view/...), copy it exactly, never modify it
 
                 Respond ONLY with valid JSON, no markdown, no extra text:
-                {{"analysis": "...", "score": N, "company": "...", "role": "...", "work_mode": "...", "apply_link": "..."}}"""
+                {{"analysis": "...", "score": ,"a_summirize": , "company": "...", "role": "...", "work_mode": "...", "apply_link": "..."}}"""
     response_list= []
     for index, row in jobs.iterrows():
         response = client.models.generate_content(
