@@ -100,7 +100,7 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
                 - 10: Near-perfect fit — candidate matches almost every requirement
 
                 ## Output rules
-                - "analysis": concise reasoning covering key match/mismatch criteria. Max 150 chars.
+                - "analysis": concise reasoning covering key match/mismatch criteria.
                 - "score": integer 1-10, based on your analysis above
                 - "company": extract from the job description
                 - "role": exact job title from the description
