@@ -130,6 +130,10 @@ SnapplAI/
 │   ├── file_config.env     # Your settings (role, location, filters)
 │   ├── file_config.txt     # Additional config parameters
 │   └── Your_CV.pdf         # Your CV goes here (PDF)
+├── .github/
+│   └── workflows/
+│       └── snapplai.yml    # GitHub Actions workflow (scheduled + manual)
+├── Dockerfile              # Run anywhere with Docker
 ├── .env                    # API keys and SMTP credentials (git-ignored)
 ├── example_env.txt         # Template for .env variables
 ├── requirements.txt        # Dependencies
