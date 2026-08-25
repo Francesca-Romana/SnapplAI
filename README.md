@@ -14,13 +14,11 @@ Stop refreshing LinkedIn. This pipeline scrapes new job listings based on your s
  
 - [The Problem](#-the-problem)
 - [How It Works](#-how-it-works)
+- [Tech Stack](#-tech-stack)
 - [Pipeline Architecture](#-pipeline-architecture)
 - [AI Output Fields](#-ai-output-fields)
 - [Setup](#-setup)
-- [Usage](#-usage)
 - [Project Structure](#-project-structure)
-- [Tech Stack](#-tech-stack)
-- [Design Decisions](#-design-decisions)
 - [Roadmap v2](#-roadmap-v2)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -49,7 +47,19 @@ The pipeline runs in 4 sequential steps, fully automated:
 **Key principle:** AI reads and evaluates. Python orchestrates and delivers. No frameworks, no agents-calling-agents — just a clean data pipeline with LLM calls where they matter.
  
 ---
+## 🔧 Tech Stack
  
+| Component | Technology |
+|-----------|-----------|
+| LLM | Google GenAI SDK — `gemini-3.5-flash-lite` |
+| Scraping | python-jobspy (LinkedIn) |
+| Data | pandas, PyPDF / PyMuPDF |
+| Parsing | BeautifulSoup4 |
+| Email | smtplib (SMTP) |
+| Config | python-dotenv |
+ 
+---
+
 ## 🏗️ Pipeline Architecture
  
 ![Pipeline Architecture](assets/architecture.png)
@@ -104,17 +114,6 @@ GMAIL_APP_PASSWORD=your_app_password
  
 Configure your job search parameters (role, location, filters) in the scraper config. The pipeline uses python-jobspy under the hood — check their docs for all available filters.
 Use file_config.txt for create your file_config.env
- 
----
- 
-## ▶️ Usage
- 
-```bash
-python main.py
-```
- 
-The pipeline runs once: scrape → summarize → analyze → email.
- 
 --- 
 ## 📁 Project Structure
  
@@ -143,44 +142,6 @@ SnapplAI/
 
  
 ---
- 
-## 🔧 Tech Stack
- 
-| Component | Technology |
-|-----------|-----------|
-| LLM | Google GenAI SDK — `gemini-3.5-flash-lite` |
-| Scraping | python-jobspy (LinkedIn) |
-| Data | pandas, PyPDF / PyMuPDF |
-| Parsing | BeautifulSoup4 |
-| Email | smtplib (SMTP) |
-| Config | python-dotenv |
- 
----
- 
-## 🧠 Design Decisions
- 
-**Why Gemini?** 
-
-The project started on Groq, but daily token limits (500 RPD) made it unusable for production. Gemini's free tier is generous enough for daily runs with room to spare.
- 
-**Why `response_mime_type="application/json"`?** 
-
-Forces the model to return valid JSON directly — no regex, no stripping markdown backticks, no post-processing gymnastics. Clean in, clean out.
- 
-**Why `analysis` before `score` in the schema?** 
-
-Chain-of-thought by design. When the model writes its reasoning *before* the numeric score, it produces better, more calibrated judgments. This is a pattern from the AI Agents course — field ordering in JSON schemas enforces thinking order.
- 
-**Why no agent framework?** 
-
-This is a data pipeline, not a chatbot. Each step has a clear input/output contract (DataFrames in, DataFrames out). Python orchestration with sequential LLM calls is more reliable and debuggable than framework abstractions for this use case.
- 
-**Rate limiting** — `time.sleep(5)` 
-
-between Gemini calls respects the 15 RPM / 500 RPD free tier limits. Simple, effective, no external rate-limiter needed.
- 
----
- 
 ## 🛣️ Roadmap v2
  
 - **Multi-country scraping** — search across 2+ countries in a single run (custom feature, not supported by python-jobspy out of the box)
