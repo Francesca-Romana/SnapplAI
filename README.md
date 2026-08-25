@@ -79,41 +79,35 @@ Each job in the email is ranked by match score and includes company, role, work 
  
 ## 🚀 Setup
  
-### Requirements
+1. Get a free API key from [Google AI Studio](https://aistudio.google.com/apikey)
+2. Generate a [Gmail App Password](https://myaccount.google.com/apppasswords)
+3. Place your CV (PDF) in `your_cv_config/`
+4. Configure search settings: use `file_config.txt` to create your `file_config.env` ([filter docs](https://github.com/Bunsly/JobSpy))
+5. Create your `.env` from the template: `cp example_env.txt .env`
+### Deploy
  
-- Python 3.10 to 3.12
-- Google AI API Key (free tier available)
-- Gmail App Password (for SMTP delivery)
-### Installation
- 
+#### Local
 ```bash
-git clone https://github.com/TDK-99/SnapplAI.git
-cd SnapplAI
+git clone https://github.com/TDK-99/SnapplAI.git && cd SnapplAI
 pip install -r requirements.txt
-cp example_env.txt .env
+# complete setup steps above
+python main.py
 ```
  
-### Configuration
- 
-**1. API Key** — Get a free Google AI API key from [Google AI Studio](https://aistudio.google.com/apikey)
- 
-**2. Email** — Generate a Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
- 
-**3. Your CV** — Place your CV (PDF) in the `your_cv_config/` folder. The pipeline reads it with PyPDF and injects it into the analyzer's prompt.
- 
-**4. .env file** — Fill in your credentials:
- 
-```env
-GOOGLE_API_KEY=your_google_api_key
-GMAIL_USER=your_email@gmail.com
-GMAIL_APP_PASSWORD=your_app_password
-
+#### Docker
+```bash
+git clone https://github.com/TDK-99/SnapplAI.git && cd SnapplAI
+# complete setup steps above
+docker build -t snapplai .
+docker run --env-file .env snapplai
 ```
  
-### Search Settings
- 
- Configure your job search parameters (role, location, filters) in the scraper config. The pipeline uses python-jobspy under the hood — check their docs for all available filters.
- Use file_config.txt for create your file_config.env
+#### GitHub Actions
+1. Fork this repo (or [create a private copy](#private-copy))
+2. Complete setup steps 1-4 above in your fork
+3. Edit your settings in `.github/workflows/snapplai.yml` under the `env:` block
+4. Add credentials as **repository secrets** (Settings → Secrets → Actions): `GOOGLE_API_KEY`, `GMAIL_USER`, `GMAIL_APP_PASSWORD`
+5. **Actions** tab → enable workflows → **Run workflow**
 
 --- 
 ## 📁 Project Structure
