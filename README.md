@@ -152,17 +152,12 @@ SnapplAI/
 
  
 ## 🤝 Contributing
- 
-Contributions are welcome! Whether it's a bug fix, a new feature, or an improvement to the docs.
 
-### Development
- 
-The project was built with Jupyter notebooks for experimentation, then refactored into Python modules. If you're exploring or extending the AI agents, the notebook-first approach works well — test your prompts and parsing in a notebook, then move working code to `src/`.
- 
-### Where to find us
- 
-- **GitHub Issues** — Bug reports, feature requests, and discussions
-- **Pull Requests** — Code contributions and improvements
+Contributions are welcome — bug fixes, new features, or docs improvements.
+
+- **Issues** — Report bugs or suggest features
+- **Pull Requests** — Fork, build, submit
+
 ---
  
 ## 📄 License
