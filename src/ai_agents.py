@@ -102,13 +102,14 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
                 - "analysis": concise reasoning covering key match/mismatch criteria.
                 - "score": integer 1-10, based on your analysis above
                 - "summirize": summarize the analysis in max 150 chars.
+                - "a_summirize": alternate summary of the analysis max 100 chars.
                 - "company": extract from the job description
                 - "role": exact job title from the description
                 - "work_mode": one of "remote", "hybrid", "onsite", "unknown" — extract from description
                 - "apply_link": the original LinkedIn URL (https://www.linkedin.com/jobs/view/...), copy it exactly, never modify it
 
                 Respond ONLY with valid JSON, no markdown, no extra text:
-                {{"analysis": "...", "score": ,"summirize": , "company": "...", "role": "...", "work_mode": "...", "apply_link": "..."}}"""
+                {{"analysis": "...", "score": ,"summirize": ,"a_summirize"  , "company": "...", "role": "...", "work_mode": "...", "apply_link": "..."}}"""
     response_list= []
     for index, row in jobs.iterrows():
         response = client.models.generate_content(
