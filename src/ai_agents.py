@@ -8,6 +8,7 @@ from google import genai
 from google.genai import types
 import time
 
+from src.pydantic import JobSummary, JobScore
 
 load_dotenv(".env")
 load_dotenv("your_cv_config/file_config.env")
@@ -43,7 +44,8 @@ def agentic_summarize(jobs): # summirize the description and create an output of
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
                 temperature=0,
-                response_mime_type="application/json",  # forza output JSON
+                response_mime_type="application/json", 
+                response_schema=JobSummary # forza output JSON
             )
         )
         jobs.at[index, "summary"] = response.text
@@ -118,7 +120,8 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
                 temperature=0,
-                response_mime_type="application/json",  # forza output JSON
+                response_mime_type="application/json",
+                response_schema=JobScore  # forza output JSON
             )
         )
         response_list.append(response.text)
