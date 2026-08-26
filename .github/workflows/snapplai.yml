@@ -22,7 +22,7 @@ env:
 
   location: "Italy" #check the list on file_config.txt
   
-  results_wanted: "150" #max 50 if  only hybrid/remote max 35-40 if also on site
+  results_wanted: "110" #max 50 if  only hybrid/remote max 35-40 if also on site
 
   hours_old: "6" # when it post
 
