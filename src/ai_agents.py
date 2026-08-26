@@ -47,7 +47,7 @@ def agentic_summarize(jobs): # summirize the description and create an output of
             )
         )
         jobs.at[index, "summary"] = response.text
-        time.sleep(5)
+        time.sleep(7)  # wait 7 seconds between requests to avoid rate limiting
 
     jobs["summary_parsed"] = jobs["summary"].apply(json.loads)
 
@@ -122,7 +122,7 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
             )
         )
         response_list.append(response.text)
-        time.sleep(10)
+        time.sleep(7)  # wait 7 seconds between requests to avoid rate limiting
 
     #normilize output as dataframe
 
