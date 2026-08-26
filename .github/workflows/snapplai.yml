@@ -22,15 +22,15 @@ env:
 
   location: "Italy" #check the list on file_config.txt
   
-  results_wanted: "40" #max 50 if  only hybrid/remote max 35-40 if also on site
+  results_wanted: "150" #max 50 if  only hybrid/remote max 35-40 if also on site
 
-  hours_old: "2" # when it post
+  hours_old: "6" # when it post
 
   linkedin_fetch_description: "True" # this should be always true
 
   work_from_home: "True" # leave empty if you are interest also on site work
 
-  remote_only: "" #if you consider to work full remote insert True ,if not leave empty
+  remote_only: "True" #if you consider to work full remote insert True ,if not leave empty
 
   dir_cv: "./your_cv_config/Valerio_Mezzopra_CV.pdf" #modifify after config\
 
