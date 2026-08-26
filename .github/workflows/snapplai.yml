@@ -30,7 +30,7 @@ env:
 
   work_from_home: "True" # leave empty if you are interest also on site work
 
-  remote_only: "True" #if you consider to work full remote insert True ,if not leave empty
+  remote_only: "" #if you consider to work full remote insert True ,if not leave empty
 
   dir_cv: "./your_cv_config/Valerio_Mezzopra_CV.pdf" #modifify after config\
 
