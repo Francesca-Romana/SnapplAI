@@ -25,8 +25,10 @@ def main():
     jobs= job_scraper()
 
     jobs= agentic_summarize(jobs)
+    print("Jobs after summarization:", jobs)
 
     jobs= agentic_analyze(jobs)
+    print("Jobs after analysis:", jobs)
 
     send_email(jobs)
 
