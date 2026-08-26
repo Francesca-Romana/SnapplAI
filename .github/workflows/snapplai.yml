@@ -22,9 +22,9 @@ env:
 
   location: "Italy" #check the list on file_config.txt
   
-  results_wanted: "30" #max 50 if  only hybrid/remote max 25-30 if also on site
+  results_wanted: "40" #max 50 if  only hybrid/remote max 35-40 if also on site
 
-  hours_old: "1" # when it post
+  hours_old: "2" # when it post
 
   linkedin_fetch_description: "True" # this should be always true
 
