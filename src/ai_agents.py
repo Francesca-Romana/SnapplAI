@@ -122,7 +122,7 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
             )
         )
         response_list.append(response.text)
-        time.sleep(5)
+        time.sleep(10)
 
     #normilize output as dataframe
 
