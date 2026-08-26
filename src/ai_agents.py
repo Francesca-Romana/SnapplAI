@@ -134,6 +134,9 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
     jobs_score = pd.json_normalize(parsed)
 
     # filter df with env score
+    
+    print(jobs_score.columns.tolist(), flush=True)
+    print(jobs_score.head(2).to_string(), flush=True)
 
     jobs_score = jobs_score[jobs_score["score"]>=int(os.getenv("score_config"))]
 
