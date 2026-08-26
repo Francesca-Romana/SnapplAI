@@ -92,7 +92,7 @@ def agentic_analyze(jobs): # agentic ai that compare your cv with the output of 
                 5. **Location/remote fit** — can the candidate realistically work this role?
 
                 ## Scoring rubric
-                - 1-3: Poor fit — major gaps in required skills or seniority mismatch
+                - 1-3: Poor fit — major gaps in required skills or seniority mismatch, Overqualified (e.g. 2+ yrs for stage/internship)? Max 3.
                 - 4-5: Partial fit — some relevant skills but significant gaps remain
                 - 6-7: Good fit — most key skills covered, minor gaps only
                 - 8-9: Strong fit — skills, seniority, and domain all align well
