@@ -60,7 +60,7 @@ jobs:
       # 4. Run the pipeline
       - name: Run SnapplAI
         env:
-          GEMINI_API_KEY: ${{ secrets.LLM_GEMINI }} #token for Gemini API, you can get it from google ai studio
-          SMTP_USER: ${{ secrets.GMAIL_USER }}
-          SMTP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }} #Generate a Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
+          LLM_GEMINI: ${{ secrets.LLM_GEMINI }} #token for Gemini API, you can get it from google ai studio
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }} #Generate a Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
         run: python main.py
