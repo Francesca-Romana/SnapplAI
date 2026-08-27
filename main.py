@@ -28,10 +28,16 @@ def main():
     jobs= job_scraper()
 
     jobs= agentic_summarize(jobs)
+    
+    print("summarization done, now analyzing jobs...", flush=True)
 
     jobs, job_all= agentic_analyze(jobs)
+    
+    print("analysis done, now sending email...", flush=True)
 
     send_email(jobs,job_all)
+    
+    print("email sent, process completed.", flush=True)
 
 
 
