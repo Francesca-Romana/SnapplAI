@@ -7,7 +7,6 @@ def job_scraper():
     jobs = scrape_jobs(
         site_name= os.getenv("site_name"), 
         search_term= os.getenv("search_term"),
-        google_search_term= os.getenv("google_search_term"),
         location= os.getenv("location"),
         results_wanted= int(os.getenv("results_wanted")),
         hours_old= int(os.getenv("hours_old")),
