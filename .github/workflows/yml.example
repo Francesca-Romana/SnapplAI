@@ -1,0 +1,67 @@
+# ============================================================
+# SnapplAI — Automated Job Alerts
+# ============================================================
+# Fork this repo, add your secrets, edit your settings below,
+# then enable Actions in your fork. Done.
+# ============================================================
+
+name: SnapplAI — Job Alerts
+
+# --- WHEN does it run? ---
+on:
+  schedule:
+    - cron: "0 9-18/3 * * *" #        # Every 3 hour on 9-18
+  workflow_dispatch:               # Manual run from Actions tab
+
+# --- USER SETTINGS (edit these after forking) ---
+env:
+ 
+  site_name: "linkedin" #dont modify this
+
+  search_term: "Data Analyst" #role
+
+  location: "Italy,UK,Spain" #check the list on file_config.txt #for multi country write like this "italy,UK"
+  
+  results_wanted: "33" # Max 100 results per run. For multiple countries, split evenly:
+                       # e.g. 3 countries → ~33 each (100 / 3)
+
+  hours_old: "6" # when it post
+
+  linkedin_fetch_description: "True" # this should be always true
+
+  work_from_home: "True" # leave empty if you are interest also on site work
+
+  remote_only: "True" #if you consider to work full remote insert True ,if not leave empty
+
+  dir_cv: "./your_cv_config/Valerio_Mezzopra_CV.pdf" #modifify after config\
+
+  score_config: "7" #this is the filter for the ai score, so the data ll filter for your number and up suggest 7 for 7-8-9-10 fit cv/JD
+
+
+jobs:
+  run-snapplai:
+    runs-on: ubuntu-latest
+    environment: snapplai
+
+    steps:
+      # 1. Get the code
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # 2. Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. Run the pipeline
+      - name: Run SnapplAI
+        env:
+          LLM_GEMINI: ${{ secrets.LLM_GEMINI }} #token for Gemini API, you can get it from google ai studio
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }} #Generate a Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
+        run: python main.py
