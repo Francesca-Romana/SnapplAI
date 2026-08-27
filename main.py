@@ -12,6 +12,9 @@ import os
 from datetime import date,datetime
 from pypdf import PdfReader
 import time
+import warnings
+
+warnings.filterwarnings("ignore", message=".*AFC.*")
 
 
 import sys
