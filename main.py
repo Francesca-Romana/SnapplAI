@@ -12,6 +12,8 @@ import os
 from datetime import date,datetime
 from pypdf import PdfReader
 import time
+import logging
+logging.getLogger("google_genai.models").setLevel(logging.ERROR)
 
 
 import sys
@@ -23,12 +25,20 @@ from src.smtp import send_email
 
 def main():
     jobs= job_scraper()
+    
+    print("Number of jobs found:", jobs["id"].count())
 
     jobs= agentic_summarize(jobs)
+    
+    print("summarization done, now analyzing jobs...", flush=True)
 
-    jobs= agentic_analyze(jobs)
+    jobs, job_all= agentic_analyze(jobs)
+    
+    print("analysis done, now sending email...", flush=True)
 
-    send_email(jobs)
+    send_email(jobs,job_all)
+    
+    print("email sent, process completed.", flush=True)
 
 
 
