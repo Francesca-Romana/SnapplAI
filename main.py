@@ -28,7 +28,7 @@ def main():
 
     jobs, job_all= agentic_analyze(jobs)
 
-    send_email(jobs)
+    send_email(jobs,job_all)
 
 
 
