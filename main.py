@@ -25,6 +25,8 @@ from src.smtp import send_email
 
 def main():
     jobs= job_scraper()
+    
+    print("Number of jobs found:", jobs["id"].count())
 
     jobs= agentic_summarize(jobs)
     
